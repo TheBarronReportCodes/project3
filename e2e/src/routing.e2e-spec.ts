@@ -1,9 +1,10 @@
-import { browser, logging } from 'protractor';
+import { browser, element, by, logging } from 'protractor';
 
-describe('Protractor Demo App', function() {
-  it('should have a title', function() {
-    browser.get('http://juliemr.github.io/protractor-demo/');
+describe('Routing Tests', function() {
+  it('should navigate to welcome page and return Brackets App as text', function() {
+    browser.get('/');
+    var result = element(by.id('subpageTitle'));
 
-    expect(browser.getTitle()).toEqual('Super Calculator');
+    expect(result.getText()).toEqual('Brackets App');
   });
 });
