@@ -7,4 +7,11 @@ describe('Routing Tests', function() {
 
     expect(result.getText()).toEqual('Brackets App');
   });
+
+  it('should navigate to registration page', function() {
+    browser.get('/');
+    element(by.id('registrationLink'));
+
+    expect(result.getText()).toEqual('Brackets App');
+  });
 });
