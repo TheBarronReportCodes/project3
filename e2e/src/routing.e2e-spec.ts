@@ -11,7 +11,7 @@ describe('Routing Tests', function() {
   it('should navigate to registration page', function() {
     browser.get('/');
     element(by.id('registrationLink')).click();
-    var result = element(by.id('registrationPageTitle'));
+    var result = element(by.id('subpageTitle'));
 
     expect(result.getText()).toEqual('Register Players');
   });
