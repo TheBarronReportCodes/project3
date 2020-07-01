@@ -10,8 +10,9 @@ describe('Routing Tests', function() {
 
   it('should navigate to registration page', function() {
     browser.get('/');
-    element(by.id('registrationLink'));
+    element(by.id('registrationLink')).click();
+    var result = element(by.id('registrationPageTitle'));
 
-    expect(result.getText()).toEqual('Brackets App');
+    expect(result.getText()).toEqual('Register Players');
   });
 });
