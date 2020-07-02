@@ -15,4 +15,15 @@ describe('Routing Tests', function() {
 
     expect(result.getText()).toEqual('Register Players');
   });
+
+  it('should navigate to brackets page and back to welcome page', function() {
+    browser.get('/');
+    element(by.id('bracketsLink')).click();
+    var result1 = element(by.id('subpageTitle'));
+    expect(result1.getText()).toEqual('Brackets');
+
+    element(by.id('welcomeLink')).click();
+    var result2 = element(by.id('subpageTitle'));
+    expect(result2.getText()).toEqual('Brackets App');
+  });
 });
