@@ -47,5 +47,54 @@ describe('Successful Scenario Tests', function() {
       var result = element(by.id('registrationMessage'));
       expect(result.getText()).toEqual('Zoe,Kaylee');
     });
+
+    it('should successfully autofill four players', function() {
+      browser.get('/');
+      element(by.id('registrationLink')).click();
+
+      element(by.id('autofillFourButton')).click();
+
+      var input1 = element(by.id('contestant0'));
+      var input2 = element(by.id('contestant1'));
+      var input3 = element(by.id('contestant2'));
+      var input4 = element(by.id('contestant3'));
+      expect(input1.getAttribute('value')).toEqual('John');
+      expect(input2.getAttribute('value')).toEqual('Paul');
+      expect(input3.getAttribute('value')).toEqual('George');
+      expect(input4.getAttribute('value')).toEqual('Ringo');
+
+      element(by.id('registerContestantsButton')).click();
+      var result = element(by.id('registrationMessage'));
+      expect(result.getText()).toEqual('John,Paul,George,Ringo');
+    });
+
+    it('should successfully autofill eight players', function() {
+      browser.get('/');
+      element(by.id('registrationLink')).click();
+
+      element(by.id('autofillEightButton')).click();
+
+      var input1 = element(by.id('contestant0'));
+      var input2 = element(by.id('contestant1'));
+      var input3 = element(by.id('contestant2'));
+      var input4 = element(by.id('contestant3'));
+      var input5 = element(by.id('contestant4'));
+      var input6 = element(by.id('contestant5'));
+      var input7 = element(by.id('contestant6'));
+      var input8 = element(by.id('contestant7'));
+      expect(input1.getAttribute('value')).toEqual('Leia');
+      expect(input2.getAttribute('value')).toEqual('Luke');
+      expect(input3.getAttribute('value')).toEqual('Lando');
+      expect(input4.getAttribute('value')).toEqual('Han');
+      expect(input5.getAttribute('value')).toEqual('Chewy');
+      expect(input6.getAttribute('value')).toEqual('R2D2');
+      expect(input7.getAttribute('value')).toEqual('C3P0');
+      expect(input8.getAttribute('value')).toEqual('Vader');
+
+      element(by.id('registerContestantsButton')).click();
+      var result = element(by.id('registrationMessage'));
+      expect(result.getText()).toEqual('Leia,Luke,Lando,Han,Chewy,R2D2,C3P0,Vader');
+    });
   });
+
 });
