@@ -97,4 +97,10 @@ describe('Successful Scenario Tests', function() {
     });
   });
 
+  describe('Bracket Matches', function() {
+    it('should update matches to reflect those from registration page', function() {
+      
+    });
+  });
+
 });
