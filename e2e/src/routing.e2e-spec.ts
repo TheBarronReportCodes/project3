@@ -1,4 +1,4 @@
-import { browser, element, by, logging } from 'protractor';
+import { browser, element, by } from 'protractor';
 
 describe('Routing Tests', function() {
   it('should navigate to welcome page and return Brackets App as text', function() {
