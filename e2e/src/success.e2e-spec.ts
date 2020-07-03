@@ -106,17 +106,17 @@ describe('Successful Scenario Tests', function() {
       element(by.id('registerContestantsButton')).click();
 
       element(by.id('bracketsLink')).click();
-      var round = element(by.id('bracketsRound'));
-      expect(round.getText()).toEqual('Round: 1');
 
-      var contestant1Match1 = element(by.id('contestant1Match0'));
-      var contestant2Match1 = element(by.id('contestant2Match0'));
-      var contestant1Match2 = element(by.id('contestant1Match1'));
-      var contestant2Match2 = element(by.id('contestant2Match1'));
-      var contestant1Match3 = element(by.id('contestant1Match2'));
-      var contestant2Match3 = element(by.id('contestant2Match2'));
-      var contestant1Match4 = element(by.id('contestant1Match3'));
-      var contestant2Match4 = element(by.id('contestant2Match3'));
+      var round1 = element(by.id('bracketsRound'));
+      expect(round1.getText()).toEqual('Round: 1');
+      var contestant1Match1 = element(by.id('contestant1Match1'));
+      var contestant2Match1 = element(by.id('contestant2Match1'));
+      var contestant1Match2 = element(by.id('contestant1Match2'));
+      var contestant2Match2 = element(by.id('contestant2Match2'));
+      var contestant1Match3 = element(by.id('contestant1Match3'));
+      var contestant2Match3 = element(by.id('contestant2Match3'));
+      var contestant1Match4 = element(by.id('contestant1Match4'));
+      var contestant2Match4 = element(by.id('contestant2Match4'));
       expect(contestant1Match1.getAttribute('value')).toEqual('Leia');
       expect(contestant2Match1.getAttribute('value')).toEqual('Luke');
       expect(contestant1Match2.getAttribute('value')).toEqual('Lando');
@@ -125,6 +125,15 @@ describe('Successful Scenario Tests', function() {
       expect(contestant2Match3.getAttribute('value')).toEqual('R2D2');
       expect(contestant1Match4.getAttribute('value')).toEqual('C3P0');
       expect(contestant2Match4.getAttribute('value')).toEqual('Vader');
+
+      contestant1Match1.click();
+      contestant2Match2.click();
+      contestant2Match3.click();
+      contestant2Match4.click();
+      element(by.id('completeRoundButton')).click();
+
+      var round2 = element(by.id('bracketsRound'));
+      expect(round2.getText()).toEqual('Round: 2');
     });
   });
 
