@@ -1,6 +1,6 @@
 <h2 id="subpageTitle">Brackets</h2>
 
-<h3>Round: {{roundId}}</h3>
+<h3 id="bracketsRound">Round: {{roundId}}</h3>
 
 <h4 *ngIf="message">{{message}}</h4>
 
@@ -21,6 +21,6 @@
 </div>
 
 <button
-    *ngIf="!getChampion()" 
+    *ngIf="!getChampion()"
     type='button'
     (click)="completeRound()">Complete Round</button>

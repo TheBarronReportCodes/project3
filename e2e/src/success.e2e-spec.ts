@@ -99,7 +99,15 @@ describe('Successful Scenario Tests', function() {
 
   describe('Bracket Matches', function() {
     it('should update matches to reflect those from registration page', function() {
-      
+      browser.get('/');
+      element(by.id('registrationLink')).click();
+
+      element(by.id('autofillEightButton')).click();
+      element(by.id('registerContestantsButton')).click();
+
+      element(by.id('bracketsLink')).click();
+      var round = element(by.id('bracketsRound'));
+      expect(round.getText()).toEqual('Round: 1');
     });
   });
 
