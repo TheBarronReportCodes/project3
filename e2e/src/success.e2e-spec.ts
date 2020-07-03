@@ -108,6 +108,23 @@ describe('Successful Scenario Tests', function() {
       element(by.id('bracketsLink')).click();
       var round = element(by.id('bracketsRound'));
       expect(round.getText()).toEqual('Round: 1');
+
+      var contestant1Match1 = element(by.id('contestant1Match0'));
+      var contestant2Match1 = element(by.id('contestant2Match0'));
+      var contestant1Match2 = element(by.id('contestant1Match1'));
+      var contestant2Match2 = element(by.id('contestant2Match1'));
+      var contestant1Match3 = element(by.id('contestant1Match2'));
+      var contestant2Match3 = element(by.id('contestant2Match2'));
+      var contestant1Match4 = element(by.id('contestant1Match3'));
+      var contestant2Match4 = element(by.id('contestant2Match3'));
+      expect(contestant1Match1.getAttribute('value')).toEqual('Leia');
+      expect(contestant2Match1.getAttribute('value')).toEqual('Luke');
+      expect(contestant1Match2.getAttribute('value')).toEqual('Lando');
+      expect(contestant2Match2.getAttribute('value')).toEqual('Han');
+      expect(contestant1Match3.getAttribute('value')).toEqual('Chewy');
+      expect(contestant2Match3.getAttribute('value')).toEqual('R2D2');
+      expect(contestant1Match4.getAttribute('value')).toEqual('C3P0');
+      expect(contestant2Match4.getAttribute('value')).toEqual('Vader');
     });
   });
 
