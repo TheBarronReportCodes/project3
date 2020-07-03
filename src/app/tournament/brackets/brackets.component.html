@@ -4,7 +4,7 @@
 
 <h4 *ngIf="message">{{message}}</h4>
 
-<h4 *ngIf="getChampion()">Winner: {{getChampion()}}</h4>
+<h4 id="tournamentWinner" *ngIf="getChampion()">Winner: {{getChampion()}}</h4>
 
 <div *ngFor="let m of seeds; index as i">
   <div>

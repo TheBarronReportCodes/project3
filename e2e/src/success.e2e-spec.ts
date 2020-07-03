@@ -98,7 +98,7 @@ describe('Successful Scenario Tests', function() {
   });
 
   describe('Bracket Matches', function() {
-    it('should update matches to reflect those from registration page', function() {
+    it('should show the full completion of a tournament with 8 players', function() {
       browser.get('/');
       element(by.id('registrationLink')).click();
 
@@ -142,6 +142,31 @@ describe('Successful Scenario Tests', function() {
       expect(contestant2Match1Round2.getAttribute('value')).toEqual('Han');
       expect(contestant1Match2Round2.getAttribute('value')).toEqual('R2D2');
       expect(contestant2Match2Round2.getAttribute('value')).toEqual('Vader');
+
+      contestant1Match1Round2.click();
+      contestant1Match2Round2.click();
+      element(by.id('completeRoundButton')).click();
+
+      var round3 = element(by.id('bracketsRound'));
+      expect(round3.getText()).toEqual('Round: 3');
+      var contestant1Match1Round3 = element(by.id('contestant1Match1'));
+      var contestant2Match1Round3 = element(by.id('contestant2Match1'));
+      expect(contestant1Match1Round3.getAttribute('value')).toEqual('Leia');
+      expect(contestant2Match1Round3.getAttribute('value')).toEqual('R2D2');
+
+      contestant2Match1Round3.click();
+      element(by.id('completeRoundButton')).click();
+
+      var round3 = element(by.id('bracketsRound'));
+      expect(round3.getText()).toEqual('Round: 3');
+      var winner = element(by.id('tournamentWinner'));
+      expect(winner.getText()).toEqual('Winner: R2D2');;
+    });
+
+    it('should show the full completion of a tournament with 4 players', function() {
+    });
+
+    it('should show the full completion of a tournament with 2 players', function() {
     });
   });
 
