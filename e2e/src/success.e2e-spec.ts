@@ -1,4 +1,3 @@
-import { browser, element, by } from 'protractor';
 import { Helper } from './models/helper';
 
 describe('Successful Scenario Tests', function() {
