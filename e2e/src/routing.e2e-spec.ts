@@ -1,8 +1,11 @@
 import { browser, element, by } from 'protractor';
+import { Helper } from './models/helper';
 
 describe('Routing Tests', function() {
+  let helper = new Helper();
+
   it('should navigate to welcome page and return Brackets App as text', function() {
-    browser.get('/');
+    helper.loadHome();
     var result = element(by.id('subpageTitle'));
 
     expect(result.getText()).toEqual('Brackets App');
