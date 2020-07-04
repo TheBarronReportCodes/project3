@@ -1,71 +1,50 @@
 import { browser, element, by } from 'protractor';
+import { Helper } from './models/helper';
 
 describe('Successful Scenario Tests', function() {
+    let helper = new Helper();
   describe('Input values and registerContestants()', function() {
     it('should update players array on registration page', function() {
-      browser.get('/');
-      element(by.id('registrationLink')).click();
-
-      var input1 = element(by.id('contestant0'));
-      input1.sendKeys('Goku');
-      expect(input1.getAttribute('value')).toEqual('Goku');
-
-      var input2 = element(by.id('contestant1'));
-      input2.sendKeys('Vegeta');
-      expect(input2.getAttribute('value')).toEqual('Vegeta');
+      helper.loadHome();
+      helper.idClick('registrationLink');
+      helper.idSendKeys('contestant0', 'Goku');
+      helper.idSendKeys('contestant1', 'Vegeta');
+      helper.idValueExpectToEqual('contestant0', 'Goku');
+      helper.idValueExpectToEqual('contestant1', 'Vegeta');
     });
 
     it('should register contestants successfully', function() {
-      browser.get('/');
-      element(by.id('registrationLink')).click();
-
-      var input1 = element(by.id('contestant0'));
-      input1.sendKeys('Goku');
-      var input2 = element(by.id('contestant1'));
-      input2.sendKeys('Vegeta');
-
-      element(by.id('registerContestantsButton')).click();
-      var result = element(by.id('registrationMessage'));
-      expect(result.getText()).toEqual('Goku,Vegeta');
+      helper.loadHome();
+      helper.idClick('registrationLink');
+      helper.idSendKeys('contestant0', 'Goku');
+      helper.idSendKeys('contestant1', 'Vegeta');
+      helper.idClick('registerContestantsButton');
+      helper.idExpectToEqual('registrationMessage', 'Goku,Vegeta');
     });
 
   });
 
   describe('Autofill Tests', function() {
     it('should successfully autofill two players', function() {
-      browser.get('/');
-      element(by.id('registrationLink')).click();
-
-      element(by.id('autofillTwoButton')).click();
-
-      var input1 = element(by.id('contestant0'));
-      var input2 = element(by.id('contestant1'));
-      expect(input1.getAttribute('value')).toEqual('Zoe');
-      expect(input2.getAttribute('value')).toEqual('Kaylee');
-
-      element(by.id('registerContestantsButton')).click();
-      var result = element(by.id('registrationMessage'));
-      expect(result.getText()).toEqual('Zoe,Kaylee');
+      helper.loadHome();
+      helper.idClick('registrationLink');
+      helper.idClick('autofillTwoButton');
+      helper.idValueExpectToEqual('contestant0', 'Zoe');
+      helper.idValueExpectToEqual('contestant1', 'Kaylee');
+      helper.idClick('registerContestantsButton');
+      helper.idExpectToEqual('registrationMessage', 'Zoe,Kaylee');
     });
 
     it('should successfully autofill four players', function() {
-      browser.get('/');
-      element(by.id('registrationLink')).click();
-
-      element(by.id('autofillFourButton')).click();
-
-      var input1 = element(by.id('contestant0'));
-      var input2 = element(by.id('contestant1'));
-      var input3 = element(by.id('contestant2'));
-      var input4 = element(by.id('contestant3'));
-      expect(input1.getAttribute('value')).toEqual('John');
-      expect(input2.getAttribute('value')).toEqual('Paul');
-      expect(input3.getAttribute('value')).toEqual('George');
-      expect(input4.getAttribute('value')).toEqual('Ringo');
-
-      element(by.id('registerContestantsButton')).click();
-      var result = element(by.id('registrationMessage'));
-      expect(result.getText()).toEqual('John,Paul,George,Ringo');
+      helper.loadHome();
+      helper.idClick('registrationLink');
+      helper.idClick('autofillFourButton');
+      helper.idValueExpectToEqual('contestant0', 'John');
+      helper.idValueExpectToEqual('contestant1', 'Paul');
+      helper.idValueExpectToEqual('contestant2', 'George');
+      helper.idValueExpectToEqual('contestant3', 'Ringo');
+      helper.idClick('registerContestantsButton');
+      helper.idExpectToEqual('registrationMessage', 'John,Paul,George,Ringo');
     });
 
     it('should successfully autofill eight players', function() {
