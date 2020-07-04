@@ -1,4 +1,3 @@
-import { browser, element, by } from 'protractor';
 import { Helper } from './models/helper';
 
 describe('Routing Tests', function() {
@@ -6,38 +5,30 @@ describe('Routing Tests', function() {
 
   it('should navigate to welcome page and return Brackets App as text', function() {
     helper.loadHome();
-    var result = element(by.id('subpageTitle'));
-
-    expect(result.getText()).toEqual('Brackets App');
+    helper.idExpectToEqual('subpageTitle', 'Brackets App');
   });
 
   it('should navigate to registration page', function() {
-    browser.get('/');
-    element(by.id('registrationLink')).click();
-    var result = element(by.id('subpageTitle'));
-
-    expect(result.getText()).toEqual('Register Players');
+    helper.loadHome();
+    helper.idClick('registrationLink');
+    helper.idExpectToEqual('subpageTitle', 'Register Players');
   });
 
   it('should navigate to brackets page', function() {
-    browser.get('/');
-    element(by.id('bracketsLink')).click();
-    var result = element(by.id('subpageTitle'));
-    expect(result.getText()).toEqual('Brackets');
+    helper.loadHome();
+    helper.idClick('bracketsLink');
+    helper.idExpectToEqual('subpageTitle', 'Brackets');
   });
 
   it('should navigate from a different page back to the welcome page', function() {
-    browser.get('/');
-    element(by.id('registrationLink')).click();
-    var result0 = element(by.id('subpageTitle'));
-    expect(result0.getText()).toEqual('Register Players');
+    helper.loadHome();
+    helper.idClick('registrationLink');
+    helper.idExpectToEqual('subpageTitle', 'Register Players');
 
-    element(by.id('bracketsLink')).click();
-    var result1 = element(by.id('subpageTitle'));
-    expect(result1.getText()).toEqual('Brackets');
+    helper.idClick('bracketsLink');
+    helper.idExpectToEqual('subpageTitle', 'Brackets');
 
-    element(by.id('welcomeLink')).click();
-    var result2 = element(by.id('subpageTitle'));
-    expect(result2.getText()).toEqual('Brackets App');
+    helper.idClick('welcomeLink');
+    helper.idExpectToEqual('subpageTitle', 'Brackets App');
   });
 });
