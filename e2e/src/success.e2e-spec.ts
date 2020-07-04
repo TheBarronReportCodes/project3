@@ -48,96 +48,61 @@ describe('Successful Scenario Tests', function() {
     });
 
     it('should successfully autofill eight players', function() {
-      browser.get('/');
-      element(by.id('registrationLink')).click();
-
-      element(by.id('autofillEightButton')).click();
-
-      var input1 = element(by.id('contestant0'));
-      var input2 = element(by.id('contestant1'));
-      var input3 = element(by.id('contestant2'));
-      var input4 = element(by.id('contestant3'));
-      var input5 = element(by.id('contestant4'));
-      var input6 = element(by.id('contestant5'));
-      var input7 = element(by.id('contestant6'));
-      var input8 = element(by.id('contestant7'));
-      expect(input1.getAttribute('value')).toEqual('Leia');
-      expect(input2.getAttribute('value')).toEqual('Luke');
-      expect(input3.getAttribute('value')).toEqual('Lando');
-      expect(input4.getAttribute('value')).toEqual('Han');
-      expect(input5.getAttribute('value')).toEqual('Chewy');
-      expect(input6.getAttribute('value')).toEqual('R2D2');
-      expect(input7.getAttribute('value')).toEqual('C3P0');
-      expect(input8.getAttribute('value')).toEqual('Vader');
-
-      element(by.id('registerContestantsButton')).click();
-      var result = element(by.id('registrationMessage'));
-      expect(result.getText()).toEqual('Leia,Luke,Lando,Han,Chewy,R2D2,C3P0,Vader');
+      helper.loadHome();
+      helper.idClick('registrationLink');
+      helper.idClick('autofillEightButton');
+      helper.idValueExpectToEqual('contestant0', 'Leia');
+      helper.idValueExpectToEqual('contestant1', 'Luke');
+      helper.idValueExpectToEqual('contestant2', 'Lando');
+      helper.idValueExpectToEqual('contestant3', 'Han');
+      helper.idValueExpectToEqual('contestant4', 'Chewy');
+      helper.idValueExpectToEqual('contestant5', 'R2D2');
+      helper.idValueExpectToEqual('contestant6', 'C3P0');
+      helper.idValueExpectToEqual('contestant7', 'Vader');
+      helper.idClick('registerContestantsButton');
+      helper.idExpectToEqual('registrationMessage', 'Leia,Luke,Lando,Han,Chewy,R2D2,C3P0,Vader');
     });
   });
 
   describe('Bracket Matches', function() {
     it('should show the full completion of a tournament with 8 players', function() {
-      browser.get('/');
-      element(by.id('registrationLink')).click();
+      helper.loadHome();
+      helper.idClick('registrationLink');
+      helper.idClick('autofillEightButton');
+      helper.idClick('registerContestantsButton');
+      helper.idClick('bracketsLink');
+      helper.idExpectToEqual('bracketsRound', 'Round: 1');
+      helper.idValueExpectToEqual('contestant1Match1', 'Leia');
+      helper.idValueExpectToEqual('contestant2Match1', 'Luke');
+      helper.idValueExpectToEqual('contestant1Match2', 'Lando');
+      helper.idValueExpectToEqual('contestant2Match2', 'Han');
+      helper.idValueExpectToEqual('contestant1Match3', 'Chewy');
+      helper.idValueExpectToEqual('contestant2Match3', 'R2D2');
+      helper.idValueExpectToEqual('contestant1Match4', 'C3P0');
+      helper.idValueExpectToEqual('contestant2Match4', 'Vader');
+      helper.idClick('contestant1Match1');
+      helper.idClick('contestant2Match2');
+      helper.idClick('contestant2Match3');
+      helper.idClick('contestant2Match4');
+      helper.idClick('completeRoundButton');
 
-      element(by.id('autofillEightButton')).click();
-      element(by.id('registerContestantsButton')).click();
+      helper.idExpectToEqual('bracketsRound', 'Round: 2');
+      helper.idValueExpectToEqual('contestant1Match1', 'Leia');
+      helper.idValueExpectToEqual('contestant2Match1', 'Han');
+      helper.idValueExpectToEqual('contestant1Match2', 'R2D2');
+      helper.idValueExpectToEqual('contestant2Match2', 'Vader');
+      helper.idClick('contestant1Match1');
+      helper.idClick('contestant1Match2');
+      helper.idClick('completeRoundButton');
 
-      element(by.id('bracketsLink')).click();
-
-      var round1 = element(by.id('bracketsRound'));
-      expect(round1.getText()).toEqual('Round: 1');
-      var contestant1Match1Round1 = element(by.id('contestant1Match1'));
-      var contestant2Match1Round1 = element(by.id('contestant2Match1'));
-      var contestant1Match2Round1 = element(by.id('contestant1Match2'));
-      var contestant2Match2Round1 = element(by.id('contestant2Match2'));
-      var contestant1Match3Round1 = element(by.id('contestant1Match3'));
-      var contestant2Match3Round1 = element(by.id('contestant2Match3'));
-      var contestant1Match4Round1 = element(by.id('contestant1Match4'));
-      var contestant2Match4Round1 = element(by.id('contestant2Match4'));
-      expect(contestant1Match1Round1.getAttribute('value')).toEqual('Leia');
-      expect(contestant2Match1Round1.getAttribute('value')).toEqual('Luke');
-      expect(contestant1Match2Round1.getAttribute('value')).toEqual('Lando');
-      expect(contestant2Match2Round1.getAttribute('value')).toEqual('Han');
-      expect(contestant1Match3Round1.getAttribute('value')).toEqual('Chewy');
-      expect(contestant2Match3Round1.getAttribute('value')).toEqual('R2D2');
-      expect(contestant1Match4Round1.getAttribute('value')).toEqual('C3P0');
-      expect(contestant2Match4Round1.getAttribute('value')).toEqual('Vader');
-
-      contestant1Match1Round1.click();
-      contestant2Match2Round1.click();
-      contestant2Match3Round1.click();
-      contestant2Match4Round1.click();
-      element(by.id('completeRoundButton')).click();
-
-      var round2 = element(by.id('bracketsRound'));
-      expect(round2.getText()).toEqual('Round: 2');
-      var contestant1Match1Round2 = element(by.id('contestant1Match1'));
-      var contestant2Match1Round2 = element(by.id('contestant2Match1'));
-      var contestant1Match2Round2 = element(by.id('contestant1Match2'));
-      var contestant2Match2Round2 = element(by.id('contestant2Match2'));
-      expect(contestant1Match1Round2.getAttribute('value')).toEqual('Leia');
-      expect(contestant2Match1Round2.getAttribute('value')).toEqual('Han');
-      expect(contestant1Match2Round2.getAttribute('value')).toEqual('R2D2');
-      expect(contestant2Match2Round2.getAttribute('value')).toEqual('Vader');
-
-      contestant1Match1Round2.click();
-      contestant1Match2Round2.click();
-      element(by.id('completeRoundButton')).click();
-
-      var round3 = element(by.id('bracketsRound'));
-      expect(round3.getText()).toEqual('Round: 3');
-      var contestant1Match1Round3 = element(by.id('contestant1Match1'));
-      var contestant2Match1Round3 = element(by.id('contestant2Match1'));
-      expect(contestant1Match1Round3.getAttribute('value')).toEqual('Leia');
-      expect(contestant2Match1Round3.getAttribute('value')).toEqual('R2D2');
-
+      helper.idExpectToEqual('bracketsRound', 'Round: 3');
+      helper.idValueExpectToEqual('contestant1Match1', 'Leia');
+      helper.idValueExpectToEqual('contestant2Match1', 'R2D2');
+      helper.idClick('contestant2Match1');
+      helper.idClick('completeRoundButton');
       contestant2Match1Round3.click();
-      element(by.id('completeRoundButton')).click();
 
-      var round3 = element(by.id('bracketsRound'));
-      expect(round3.getText()).toEqual('Round: 3');
+      helper.idExpectToEqual('bracketsRound', 'Round: 3');
       var winner = element(by.id('tournamentWinner'));
       expect(winner.getText()).toEqual('Winner: R2D2');
     });
